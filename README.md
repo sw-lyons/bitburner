@@ -1,0 +1,2 @@
+# bitburner
+bitburner javascript code
