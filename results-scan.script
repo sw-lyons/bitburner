@@ -1,0 +1,32 @@
+hostName = getHostname();
+scanArray = [hostName];
+currentScanLength = 0;
+servers = [];
+//scanArray.length
+while (currentScanLength < scanArray.length) {
+    previousScanLength = currentScanLength;
+    currentScanLength = scanArray.length;
+    for (i = previousScanLength; i < currentScanLength; i++) {
+        currentHost = scanArray[i];
+
+        if (!currentHost.includes("pserv-")) {
+            server = {hostname: currentHost, hacklevel: getServerRequiredHackingLevel(currentHost), maxmoney: getServerMaxMoney(currentHost), growth: getServerGrowth(currentHost), minsecurity: getServerMinSecurityLevel(currentHost)};
+            tprint(server)
+            servers.push(server);
+
+                
+            newScan = scan(currentHost);        
+            
+            for (j = 0; j < newScan.length; j++) {
+                if (scanArray.indexOf(newScan[j]) == -1) {
+                    scanArray.push(newScan[j]);                
+                }
+            }       
+        }    
+    }   
+}
+
+//currentHost="home"
+//servers={hostname: currentHost, hacklevel: getServerRequiredHackingLevel(currentHost), maxmoney: getServerMaxMoney(currentHost), growth: getServerGrowth(currentHost), minsecurity: getServerMinSecurityLevel(currentHost)};
+data=JSON.stringify(servers)
+write("results-scan.txt",data,"w")

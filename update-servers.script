@@ -1,0 +1,17 @@
+
+f = read("results-scan.txt")
+servers = JSON.parse(f)
+
+//refresh all servers with hack script
+for  (i=0; i< servers.length;++i) {
+
+    tprint("Connecting: ", servers[i].hostname, "\n")
+    kill("hack.script",servers[i].hostname)
+    scp("hack.script", servers[i].hostname)
+    threads = Math.floor(getServerMaxRam(servers[i].hostname)/getScriptRam("hack.script"))
+    if (threads > 0) {
+        exec("hack.script", servers[i].hostname,  threads)    
+    }
+    
+}
+

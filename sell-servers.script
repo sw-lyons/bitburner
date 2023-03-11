@@ -1,0 +1,19 @@
+deletedServers = []
+ram = 512
+
+
+servers = getPurchasedServers()
+for (i in servers){	
+	if (getServerMaxRam(servers[i]) <=ram){
+        deletedServers.push(servers[i])
+    }
+}
+
+
+prompt("You will be deleting: " + deletedServers)
+// for (i in deletedServers) {
+// 		killall(servers[i])
+// 		deleteServer(servers[i])
+// 		tprint("deleted: ",servers[i])
+//     }
+
