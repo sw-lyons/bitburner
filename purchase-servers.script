@@ -1,6 +1,6 @@
 // How much RAM each purchased server will have. In this case, it'll
 // be 8GB.
-var ram = 512;
+var ram = 16384;
 
 // Iterator we'll use for our loop
 var i =0;

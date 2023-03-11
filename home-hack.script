@@ -1,35 +1,9 @@
+hostname=getHostname()
 
-f = read("results-scan.txt")
-servers = JSON.parse(f)
+kill("hack.script")
 
-for (i in servers) {
-	if (servers[i].hostname.includes("pserv-")) { 
-        //run code
-	}else{	
-		if (fileExists("BruteSSH.exe", "home")) {
-			brutessh(servers[i].hostname);
-		}
-
-		if (fileExists("FTPCrack.exe", "home")) {
-			ftpcrack(servers[i].hostname);
-		}
-
-		if (fileExists("relaySMTP.exe", "home")) {
-			relaysmtp(servers[i].hostname);
-		}
-		
-		if (fileExists("HTTPworm.exe", "home")) {
-			httpworm(servers[i].hostname);
-		}
-
-        if (fileExists("SQLInject.exe", "home")) {
-            sqlinject(servers[i].hostname);
-        }
-
-
-		// Get root access to target server
-		if (getServerNumPortsRequired(servers[i].hostname) <=5){
-			nuke(servers[i].hostname);
-		}
-	}	
+threads = Math.floor(getServerMaxRam(hostname)/getScriptRam("hack.script"))
+tprint(hostname," - ",threads)
+if (threads > 0) {
+    run("hack.script",  threads)    
 }

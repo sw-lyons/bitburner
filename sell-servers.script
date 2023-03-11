@@ -11,9 +11,9 @@ for (i in servers){
 
 
 prompt("You will be deleting: " + deletedServers)
-// for (i in deletedServers) {
-// 		killall(servers[i])
-// 		deleteServer(servers[i])
-// 		tprint("deleted: ",servers[i])
-//     }
+for (i in deletedServers) {
+		killall(servers[i])
+		deleteServer(servers[i])
+		tprint("deleted: ",servers[i])
+    }
 
